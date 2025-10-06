@@ -1,0 +1,15 @@
+services:
+  tor-proxy:
+    image: dperson/torproxy
+    container_name: tor-proxy
+    restart: unless-stopped
+    ports:
+      - "9050:9050" 
+      - "8118:8118"
+    environment:
+      - TZ=America/Sao_Paulo
+      # Para usar bridges, descomente a linha abaixo e adicione bridges
+      # - TOR_BRIDGES="obfs4 <fingerprint> <ip>:<porta> cert=<cert> iat-mode=0"
+    command: >
+      -s
+      -p 8118:8118
